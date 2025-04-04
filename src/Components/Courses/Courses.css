@@ -1,0 +1,149 @@
+.courses-container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.course {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: #ffffff;
+  height: 100%;
+}
+
+.course:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-image {
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.course:hover .course-image img {
+  transform: scale(1.1);
+}
+
+.caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 26, 58, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.caption img {
+  width: 40px; /* Reduced from 60px to make it fit better */
+  height: 40px; /* Added height to maintain aspect ratio */
+  margin-bottom: 15px;
+  transform: translateY(-20px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.caption p {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  transform: translateY(20px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.course:hover .caption {
+  opacity: 1;
+}
+
+.course:hover .caption img,
+.course:hover .caption p {
+  transform: translateY(0);
+}
+
+.course-content {
+  padding: 25px;
+}
+
+.course-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.course-description {
+  color: #4a4a6a;
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  color: #7a7a9a;
+  font-size: 14px;
+}
+
+.meta-item svg {
+  margin-right: 5px;
+  color: #2a3990;
+}
+
+.course-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.view-all-btn {
+  margin: 50px auto 0;
+  display: block;
+  max-width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .courses {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .course-image {
+    height: 200px;
+  }
+
+  .course-content {
+    padding: 20px;
+  }
+}
+
