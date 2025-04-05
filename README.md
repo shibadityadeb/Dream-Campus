@@ -35,4 +35,4 @@ dream-campus/
 ├── .gitignore
 ├── package.json
 ├── README.md
-└── vite.config.js (if using Vite)
+└── vite.config.js 
