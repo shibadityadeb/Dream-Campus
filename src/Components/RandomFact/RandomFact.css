@@ -1,0 +1,40 @@
+.random-fact-container {
+    position: fixed;
+    left: -300px;
+    bottom: 20%;
+    width: 250px;
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: left 0.5s ease-in-out;
+    z-index: 999;
+  }
+  
+  .random-fact-container.show {
+    left: 10px;
+  }
+  
+  .random-fact-container h3 {
+    margin: 0;
+    color: #4f46e5;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .random-fact-container p {
+    margin: 8px 0;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .random-fact-container button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
