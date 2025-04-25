@@ -54,8 +54,6 @@ const App = () => {
         </section>
       </div>
       <Footer />
-
-      {/* 💡 Random Fact Popup */}
       <RandomFact />
     </div>
   )
