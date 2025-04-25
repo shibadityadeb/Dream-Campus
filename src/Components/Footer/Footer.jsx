@@ -182,27 +182,42 @@ function Footer() {
               </li>
             </ul>
             <div className="newsletter">
-              <h4>Subscribe to Newsletter</h4>
-              <div className="newsletter-form">
-                <input type="email" placeholder="Your email address" />
-                <button type="submit">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                </button>
-              </div>
-            </div>
+  <h4>Subscribe to Newsletter</h4>
+  <div className="newsletter-form">
+    <input type="email" placeholder="Your email address" />
+    <button type="submit">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</div>
+
+{/* Map Embed */}
+<div className="map-embed" style={{ marginTop: "1rem" }}>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6138.605692542005!2d73.91209408332979!3d18.619074495766824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7007ca391d7%3A0x9da4723c416a8ee5!2sNewton%20school%20of%20technology%20pune%20campus!5e1!3m2!1sen!2sin!4v1745591820729!5m2!1sen!2sin"
+    width="100%"
+    height="200"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="NST Pune Location"
+  ></iframe>
+</div>
+
           </div>
         </div>
         <div className="footer-bottom">
