@@ -1,13 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   
+    <link rel="icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DreamCampus</title>
+    <title>Dream Campus</title>
+
+    <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Zapier Chatbot Embed -->
+    <zapier-interfaces-chatbot-embed 
+      is-popup="true" 
+      chatbot-id="cm9wuszkk0025px6igtl44adq">
+    </zapier-interfaces-chatbot-embed>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
