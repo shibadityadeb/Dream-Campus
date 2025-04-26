@@ -20,12 +20,21 @@ const RandomFact = () => {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleClose = () => {
+    setShow(false)
+  }
+
   return (
-    <div className={`random-fact-container ${show ? "show" : ""}`}>
-      <h3>🎓 Did You Know?</h3>
-      <p>{fact}</p>
-      <button onClick={getRandomFact}>Show Another</button>
-    </div>
+    <>
+      {show && (
+        <div className={`random-fact-container show`}>
+          <button className="close-btn" onClick={handleClose}>×</button>
+          <h3>🎓 Did You Know?</h3>
+          <p>{fact}</p>
+          <button onClick={getRandomFact}>Show Another</button>
+        </div>
+      )}
+    </>
   )
 }
 
