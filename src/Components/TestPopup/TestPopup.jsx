@@ -1,12 +1,25 @@
 "use client"
 
+import { useState } from "react"
 import "./TestPopup.css"
 
 const TestPopup = ({ onStart, onClose }) => {
+  const [permissionError, setPermissionError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleStartTest = async () => {
+    setIsLoading(true)
+    setPermissionError(false)
+
     try {
       // Request camera and microphone permissions
-      await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: true,
+      })
+
+      // Store the stream in sessionStorage to keep track of it
+      window.testStream = stream
 
       // Try to request fullscreen
       try {
@@ -23,12 +36,14 @@ const TestPopup = ({ onStart, onClose }) => {
         // Continue even if fullscreen fails
       }
 
-      // Start the test
+      // Start the test only if permissions were granted
+      setIsLoading(false)
       onStart()
     } catch (err) {
       console.log("Permission denied: ", err)
-      // If permissions denied, still start the test
-      onStart()
+      setIsLoading(false)
+      setPermissionError(true)
+      // Do NOT start the test if permissions are denied
     }
   }
 
@@ -40,7 +55,14 @@ const TestPopup = ({ onStart, onClose }) => {
           Test your skills and see if you're eligible for admission to our prestigious programs. This test requires
           camera and microphone access for proctoring.
         </p>
-        <button onClick={handleStartTest}>Start Test</button>
+        {permissionError && (
+          <div className="permission-error">
+            Camera and microphone access is required to take this test. Please allow access and try again.
+          </div>
+        )}
+        <button onClick={handleStartTest} disabled={isLoading} className={isLoading ? "loading" : ""}>
+          {isLoading ? "Requesting Access..." : "Start Test"}
+        </button>
         <span className="close-btn" onClick={onClose}>
           &times;
         </span>

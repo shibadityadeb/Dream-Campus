@@ -230,6 +230,50 @@
       margin-bottom: 20px;
     }
 
+    /* Webcam monitor styles */
+    .webcam-monitor {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 180px;
+      height: 135px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border: 2px solid var(--primary);
+    }
+
+    .webcam-monitor video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .webcam-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(42, 57, 144, 0.8);
+      color: white;
+      font-size: 11px;
+      padding: 4px;
+      text-align: center;
+    }
+
+    .permission-error {
+      background-color: #ffebee;
+      color: #d32f2f;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      border-left: 4px solid #d32f2f;
+      text-align: left;
+    }
+
     @media (max-width: 768px) {
       .test-container {
         padding: 20px;
@@ -256,6 +300,11 @@
       .result p {
         font-size: 16px;
       }
+      
+      .webcam-monitor {
+        width: 120px;
+        height: 90px;
+      }
     }
   </style>
 </head>
@@ -277,6 +326,66 @@
       let currentQuestionIndex = 0;
       let selectedAnswers = [];
       let selectedOption = null;
+      let stream = null;
+      
+      // Check if we have a stream from the parent window
+      if (window.opener && window.opener.testStream) {
+        stream = window.opener.testStream;
+        setupWebcamMonitor(stream);
+      } else if (window.testStream) {
+        stream = window.testStream;
+        setupWebcamMonitor(stream);
+      } else {
+        // If no stream is available, check if we need to request permissions
+        checkMediaPermissions();
+      }
+      
+      // Function to check and request media permissions if needed
+      function checkMediaPermissions() {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+          .then(function(mediaStream) {
+            stream = mediaStream;
+            setupWebcamMonitor(stream);
+          })
+          .catch(function(err) {
+            console.error("Permission denied or error accessing media devices:", err);
+            showPermissionError();
+          });
+      }
+      
+      // Function to set up webcam monitor
+      function setupWebcamMonitor(mediaStream) {
+        // Create webcam monitor element
+        const webcamMonitor = document.createElement('div');
+        webcamMonitor.className = 'webcam-monitor';
+        
+        const video = document.createElement('video');
+        video.autoplay = true;
+        video.muted = true; // Mute to prevent feedback
+        
+        const label = document.createElement('div');
+        label.className = 'webcam-label';
+        label.textContent = 'Proctoring Active';
+        
+        webcamMonitor.appendChild(video);
+        webcamMonitor.appendChild(label);
+        document.body.appendChild(webcamMonitor);
+        
+        // Set up video stream
+        video.srcObject = mediaStream;
+      }
+      
+      // Function to show permission error
+      function showPermissionError() {
+        const testContainer = document.getElementById('test-container');
+        testContainer.innerHTML = `
+          <div class="permission-error">
+            <p>Camera and microphone access is required to take this test.</p>
+            <p>Please allow access and refresh the page to continue.</p>
+            <a href="/" class="result-btn">Return to Home</a>
+          </div>
+        `;
+      }
       
       // Fetch questions from JSON file
       fetch('/questions.json')
@@ -382,6 +491,17 @@
           </div>
         `;
         
+        // Stop all tracks in the stream
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+        
+        // Remove webcam monitor
+        const webcamMonitor = document.querySelector('.webcam-monitor');
+        if (webcamMonitor) {
+          webcamMonitor.remove();
+        }
+        
         // Exit fullscreen if we're in it
         if (document.exitFullscreen) {
           document.exitFullscreen().catch(err => console.log('Error exiting fullscreen:', err));
@@ -401,6 +521,13 @@
           </div>
         `;
       }
+      
+      // Handle page unload to clean up resources
+      window.addEventListener('beforeunload', function() {
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+      });
     });
   </script>
 </body>
