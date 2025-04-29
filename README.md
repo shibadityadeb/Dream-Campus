@@ -1,38 +1,35 @@
-# Dream Campus
+# 🚀 Dream Campus
 
-**Dream Campus** is a single-page website I made using React. The goal of this project was to design a sleek, responsive platform that helps students explore colleges and career paths easily. I focused on creating a clean UI, smooth navigation, and a user-friendly experience that works well across all devices.
+**Dream Campus** is a sleek and responsive single-page web application built with React. It provides a seamless platform for students to explore college opportunities and determine admission eligibility through an interactive online test with live proctoring.
 
+🌐 **Hosted Link**: [https://dream-campus.vercel.app](https://dream-campus.vercel.app)
 
-## ✨ Highlights
+---
 
-- Sleek and intuitive UI/UX for smooth navigation
-- Responsive design optimized for all screen sizes
-- Modular component structure for scalability and maintainability
-- Fast performance with optimized assets and lazy loading
-- Clean and well-organized codebase following best practices
+## ✨ Features
 
-## 🛠️ Tech Stack
+- 🎯 **Admission Test**: Multiple-choice test with real-time webcam-based proctoring using `navigator.mediaDevices`.
+- 🔐 **Permission Handling**: Prompts camera/microphone access for test integrity.
+- 📋 **Admission Form**: Multi-step admission form appears for eligible students post-test.
+- 📁 **Hardcoded Questions**: JSON-based question set stored locally in `public/questions.json`.
+- 📱 **Mobile-Friendly**: Fully responsive and touch-optimized interface.
+- ⚡ **Fast Performance**: Built with Vite and optimized for speed.
+- 🧩 **Modular Codebase**: Easily extendable React component architecture.
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Library**: React.js
+---
+
+## 🛠 Tech Stack
+
+- **Frontend Framework**: React.js
+- **Language**: JavaScript (ES6+)
+- **Build Tool**: Vite
+- **Styling**: CSS3
+- **Data Handling**: Static JSON (`questions.json`)
 - **Deployment**: Vercel
 
-## 🌐 Live Preview
+---
 
-👉 [Visit Dream Campus](https://dream-campus.vercel.app/)
+## 📜 License
 
-## 📁 Project Structure
+This project is licensed under the MIT License.
 
-```bash
-dream-campus/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── App.js
-│   └── index.js
-├── .gitignore
-├── package.json
-├── README.md
-└── vite.config.js 
