@@ -31,9 +31,9 @@ const App = () => {
       }, 500)
     }
 
-    // Only show popup if user hasn't seen it in this session
+   
     if (!hasSeenPopup) {
-      // Show popup after a short delay
+      
       const timer = setTimeout(() => {
         setShowPopup(true)
       }, 2000)
@@ -43,14 +43,12 @@ const App = () => {
 
   const handleClosePopup = () => {
     setShowPopup(false)
-    // Mark that user has seen the popup in this session
     sessionStorage.setItem("hasSeenTestPopup", "true")
   }
 
   const handleStartTest = () => {
-    // Mark that user has seen the popup
     sessionStorage.setItem("hasSeenTestPopup", "true")
-    // Navigate to the test page
+ 
     window.location.href = "/test.html"
   }
 
