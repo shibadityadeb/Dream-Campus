@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission Eligibility Test - Dream Campus</title>
+  <link rel="icon" href="/favicon.svg" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Outfit", sans-serif;
+    }
+
+    :root {
+      --primary: #2a3990;
+      --primary-light: #3a4db1;
+      --primary-dark: #1c2970;
+      --secondary: #ff5e3a;
+      --secondary-light: #ff7e5a;
+      --secondary-dark: #e54e2a;
+      --text-dark: #1a1a2e;
+      --text-medium: #4a4a6a;
+      --text-light: #7a7a9a;
+      --bg-light: #f8f9ff;
+      --bg-white: #ffffff;
+      --bg-dark: #0f1a3a;
+      --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .test-page {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .test-header {
+      margin-bottom: 30px;
+    }
+
+    .test-header h1 {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .test-header p {
+      color: var(--text-medium);
+      font-size: 16px;
+    }
+
+    .test-container {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .question-counter {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      text-align: right;
+    }
+
+    .question-text {
+      font-size: 22px;
+      color: var(--text-dark);
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .options-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .option-item {
+      background-color: var(--bg-light);
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      margin: 12px 0;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      color: var(--text-medium);
+      text-align: left;
+    }
+
+    .option-item:hover {
+      background-color: rgba(42, 57, 144, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .option-item.selected {
+      background-color: rgba(42, 57, 144, 0.1);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .next-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 4px 10px rgba(42, 57, 144, 0.2);
+    }
+
+    .next-btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(42, 57, 144, 0.3);
+    }
+
+    .next-btn.disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .result {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .result h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+
+    .result p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: var(--text-medium);
+    }
+
+    .eligible-text {
+      color: #28a745;
+      font-weight: 600;
+    }
+
+    .not-eligible-text {
+      color: #dc3545;
+      font-weight: 600;
+    }
+
+    .result-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 10px;
+      box-shadow: 0 4px 10px rgba(42, 57, 144, 0.2);
+      text-decoration: none;
+    }
+
+    .result-btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(42, 57, 144, 0.3);
+    }
+
+    .result-btn.secondary {
+      background-color: var(--secondary);
+      box-shadow: 0 4px 10px rgba(255, 94, 58, 0.2);
+    }
+
+    .result-btn.secondary:hover {
+      background-color: var(--secondary-dark);
+      box-shadow: 0 6px 15px rgba(255, 94, 58, 0.3);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      font-size: 18px;
+      color: var(--text-medium);
+    }
+
+    .error {
+      text-align: center;
+      padding: 30px;
+      font-size: 18px;
+      color: #dc3545;
+    }
+
+    .logo {
+      max-width: 120px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .test-container {
+        padding: 20px;
+      }
+
+      .question-text {
+        font-size: 18px;
+      }
+
+      .option-item {
+        padding: 12px 15px;
+        font-size: 15px;
+      }
+
+      .next-btn {
+        padding: 12px 25px;
+        font-size: 15px;
+      }
+
+      .result h2 {
+        font-size: 22px;
+      }
+
+      .result p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="test-page" id="test-page">
+    <img src="./logo.png" alt="Dream Campus Logo" class="logo">
+    <div class="test-header">
+      <h1>Admission Eligibility Test</h1>
+      <p>Answer the following questions to check your eligibility for admission.</p>
+    </div>
+    <div class="test-container" id="test-container">
+      <div class="loading">Loading questions...</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let questions = [];
+      let currentQuestionIndex = 0;
+      let selectedAnswers = [];
+      let selectedOption = null;
+      
+      // Fetch questions from JSON file
+      fetch('/questions.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch questions');
+          }
+          return response.json();
+        })
+        .then(data => {
+          questions = data.questions;
+          if (questions && questions.length > 0) {
+            renderQuestion();
+          } else {
+            showError('No questions available. Please try again later.');
+          }
+        })
+        .catch(error => {
+          console.error('Error loading questions:', error);
+          showError('Failed to load questions. Please try again later.');
+        });
+      
+      function renderQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        const testContainer = document.getElementById('test-container');
+        
+        testContainer.innerHTML = `
+          <div class="question-counter">
+            Question ${currentQuestionIndex + 1} of ${questions.length}
+          </div>
+          <h3 class="question-text">${currentQuestion.question}</h3>
+          <ul class="options-list" id="options-list">
+            ${currentQuestion.options.map((option, idx) => `
+              <li class="option-item" data-option="${option}">${option}</li>
+            `).join('')}
+          </ul>
+          <button class="next-btn disabled" id="next-btn" disabled>
+            ${currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Submit Test'}
+          </button>
+        `;
+        
+        // Add event listeners to options
+        const optionItems = document.querySelectorAll('.option-item');
+        optionItems.forEach(item => {
+          item.addEventListener('click', function() {
+            // Remove selected class from all options
+            optionItems.forEach(opt => opt.classList.remove('selected'));
+            // Add selected class to clicked option
+            this.classList.add('selected');
+            // Store selected option
+            selectedOption = this.getAttribute('data-option');
+            // Enable next button
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.classList.remove('disabled');
+            nextBtn.disabled = false;
+          });
+        });
+        
+        // Add event listener to next button
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.addEventListener('click', handleNextQuestion);
+      }
+      
+      function handleNextQuestion() {
+        if (selectedOption === null) {
+          return;
+        }
+        
+        // Save the selected answer
+        selectedAnswers.push(selectedOption);
+        
+        // Reset selected option
+        selectedOption = null;
+        
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          renderQuestion();
+        } else {
+          showResults();
+        }
+      }
+      
+      function calculateScore() {
+        return selectedAnswers.filter((answer, index) => {
+          return questions[index].answer.includes(answer);
+        }).length;
+      }
+      
+      function showResults() {
+        const score = calculateScore();
+        const isEligible = score >= 3; // Eligible if score is 3 or higher
+        const testContainer = document.getElementById('test-container');
+        
+        testContainer.innerHTML = `
+          <div class="result">
+            <h2>Your Score: ${score}/${questions.length}</h2>
+            ${isEligible ? 
+              `<p class="eligible-text">Congratulations! You are eligible for admission.</p>
+               <a href="/#contact" class="result-btn">Contact Admissions</a>` : 
+              `<p class="not-eligible-text">Thank you for taking the test. Unfortunately, you didn't meet the eligibility criteria.</p>
+               <a href="/" class="result-btn secondary">Go Back Home</a>`
+            }
+          </div>
+        `;
+        
+        // Exit fullscreen if we're in it
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(err => console.log('Error exiting fullscreen:', err));
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+      
+      function showError(message) {
+        const testContainer = document.getElementById('test-container');
+        testContainer.innerHTML = `
+          <div class="error">
+            <p>${message}</p>
+            <a href="/" class="result-btn">Return to Home</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

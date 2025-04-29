@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "questionId": "1",
+      "question": "What is the capital of France?",
+      "questionType": "text",
+      "answerType": "options",
+      "options": ["Berlin", "Madrid", "Paris", "London"],
+      "answer": ["Paris"]
+    },
+    {
+      "questionId": "2",
+      "question": "Which language is used for web development?",
+      "questionType": "text",
+      "answerType": "options",
+      "options": ["Java", "Python", "JavaScript", "C++"],
+      "answer": ["JavaScript"]
+    },
+    {
+      "questionId": "3",
+      "question": "What does HTML stand for?",
+      "questionType": "text",
+      "answerType": "options",
+      "options": ["Hyper Text Markup Language", "High Text Markup Language", "Hyperlinks and Text Markup Language"],
+      "answer": ["Hyper Text Markup Language"]
+    },
+    {
+      "questionId": "4",
+      "question": "Who is the founder of Microsoft?",
+      "questionType": "text",
+      "answerType": "options",
+      "options": ["Steve Jobs", "Mark Zuckerberg", "Bill Gates", "Elon Musk"],
+      "answer": ["Bill Gates"]
+    },
+    {
+      "questionId": "5",
+      "question": "Which company developed React?",
+      "questionType": "text",
+      "answerType": "options",
+      "options": ["Facebook", "Google", "Twitter", "Apple"],
+      "answer": ["Facebook"]
+    }
+  ]
+}
