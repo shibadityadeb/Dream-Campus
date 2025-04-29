@@ -1,6 +1,6 @@
 # 🚀 Dream Campus
 
-**Dream Campus** is a sleek and responsive single-page web application built with React. It provides a seamless platform for students to explore college opportunities and determine admission eligibility through an interactive online test with live proctoring.
+**Dream Campus** is a sleek and responsive single-page web application built with React. It provides a seamless platform for students to explore college opportunities and determine admission eligibility through an interactive online test with live proctoring and AI-based chatbot assistance.
 
 🌐 **Hosted Link**: [https://dream-campus.vercel.app](https://dream-campus.vercel.app)
 
@@ -11,6 +11,7 @@
 - 🎯 **Admission Test**: Multiple-choice test with real-time webcam-based proctoring using `navigator.mediaDevices`.
 - 🔐 **Permission Handling**: Prompts camera/microphone access for test integrity.
 - 📋 **Admission Form**: Multi-step admission form appears for eligible students post-test.
+- 💬 **AI Chatbot**: Integrated chatbot to assist users with doubts about courses, admission, and test process.
 - 📁 **Hardcoded Questions**: JSON-based question set stored locally in `public/questions.json`.
 - 📱 **Mobile-Friendly**: Fully responsive and touch-optimized interface.
 - ⚡ **Fast Performance**: Built with Vite and optimized for speed.
@@ -25,6 +26,8 @@
 - **Build Tool**: Vite
 - **Styling**: CSS3
 - **Data Handling**: Static JSON (`questions.json`)
+- **Media Capture**: Web APIs (`MediaRecorder`, `getUserMedia`)
+- **AI Integration**: Simple React-based chatbot component
 - **Deployment**: Vercel
 
 ---
@@ -32,4 +35,3 @@
 ## 📜 License
 
 This project is licensed under the MIT License.
-
